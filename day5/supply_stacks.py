@@ -20,14 +20,10 @@ def parse_input(f):
     return steps, matrix
 def get_steps(steps: list) -> list:
     movement = []
-    cnt = 0
-    frm = 0
-    to = 0
     for move in steps:
         cnt = int(move[1])
         frm = int(move[3])-1
         to = int(move[5])-1
-       # print(f"move {cnt} from {frm} to {to} ")
         movement.append([cnt,frm,to])
     return movement
 
@@ -56,12 +52,14 @@ def reorder_crates_9000(steps, matrix: list) -> list:
             matrix[move[2]].append(matrix[move[1]].pop())
     return matrix
 
+
 def reorder_crates_9001(steps, matrix: list) -> list:
     for move in steps:
         move_count = move[0]
         matrix[move[2]] = matrix[move[2]] + matrix[move[1]][-move_count:]
         del(matrix[move[1]][-move_count:])
     return matrix
+
 
 def get_stack_top(matrix: list):
     answer = ""
@@ -70,7 +68,7 @@ def get_stack_top(matrix: list):
     print(answer)
 
 
-if __name__ == '__main__':
+def main():
     test = True
     pt = 2
     if test:
@@ -87,3 +85,6 @@ if __name__ == '__main__':
         matrix = reorder_crates_9001(steps, matrix)
         get_stack_top(matrix)
 
+
+if __name__ == '__main__':
+    main()
